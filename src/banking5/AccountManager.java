@@ -69,6 +69,7 @@ public class AccountManager {
 			System.out.println("중복계좌가 발견되었습니다. 덮어쓸까요?");
 			System.out.println("Y or N");
 			String str = scan.nextLine();
+			str = str.toUpperCase();
 			
 			switch (str) {
 			case "Y":
@@ -239,10 +240,7 @@ public class AccountManager {
 			
 			accSet = (Set<Account>)in.readObject();
 			in.close();
-			System.out.println("저장되어 있는 파일의 전체계좌정보를 출력합니다.");
-			for (Account acc : accSet) {
-				acc.showAccountInfo();
-			}
+			System.out.println("저장되어 있는 파일의 전체계좌정보 갯수는 " + accSet.size() + "개 입니다.");
 			
 		} catch (ClassCastException e) {
 			System.out.println("기존 파일이 손상되었습니다.");

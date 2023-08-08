@@ -8,7 +8,7 @@ public class HighCreditAccount extends Account {
 	public HighCreditAccount(String accNum, String name, int balance, double inter, String grade) {
 		super(accNum, name, balance);
 		this.inter = inter/100.0;
-		this.grade = grade;
+		this.grade = grade.toUpperCase();
 	}
 	
 	@Override
