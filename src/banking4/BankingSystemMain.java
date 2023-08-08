@@ -41,13 +41,22 @@ public class BankingSystemMain implements ICustomDefine {
 				System.out.println("***계좌정보출력***");
 				accMgr.showAccInfo();
 				break;
+			case REMOVE:
+				System.out.println("***계좌정보삭제***");
+				accMgr.removeAccount();
+				break;
 			case EXIT:
 				System.out.println("프로그램을 종료합니다. 이용해주셔서 감사합니다.");
 				return;
 			// 범위를 벗어났을 때 예외처리
 			default:
-				System.out.println("범위가 잘못되었습니다.");
-				System.out.println("1~5사이의 숫자를 입력해주세요.");
+				try {
+					String message = "범위가 잘못되었습니다.\n1~5사이의 숫자를 입력해주세요.";
+					MenuSelectException ex = new MenuSelectException(message);
+					throw ex;
+				} catch (MenuSelectException e) {
+					System.out.println(e.getMessage());
+				}
 			}
 			
 			System.out.println("계속하려면 엔터키를 누르세요.");

@@ -12,11 +12,12 @@ public class AccountManager {
 	// 메뉴출력
 	public void showMenu() {
 		System.out.println("-----Menu-----");
-		System.out.println("1. 계좌개설");
-		System.out.println("2. 입금");
-		System.out.println("3. 출금");
-		System.out.println("4. 계좌정보출력");
-		System.out.println("5. 프로그램종료");
+		System.out.print("1. 계좌개설 ");
+		System.out.print("2. 입금 ");
+		System.out.print("3. 출금 ");
+		System.out.print("4. 계좌정보출력 ");
+		System.out.print("5. 계좌정보삭제 ");
+		System.out.print("6. 프로그램종료\n");
 		System.out.print("선택: ");
 	}
 	
@@ -42,18 +43,37 @@ public class AccountManager {
 		scan.nextLine();
 		
 		// 선택한 계좌에 따라 정보 입력
-		Account acc;
+		Account acc = null;
+		boolean flag = true;
 		switch (choice) {
 		case 1:
 			acc = new NormalAccount(accNum, name, balance, inter);
-			accSet.add(acc);
+			flag = accSet.add(acc);
 			break;
 		case 2:
 			System.out.print("신용등급(A,B,C등급): ");
 			String grade = scan.nextLine();
 			acc = new HighCreditAccount(accNum, name, balance, inter, grade);
-			accSet.add(acc);
+			flag = accSet.add(acc);
 			break;
+		}
+		
+		// 값을 넣기에 실패했다면 중복된 것이므로 덮어쓰기 여부를 물어본다.
+		if (!flag) {
+			System.out.println("중복계좌가 발견되었습니다. 덮어쓸까요?");
+			System.out.println("Y or N");
+			String str = scan.nextLine();
+			
+			switch (str) {
+			case "Y":
+				accSet.remove(acc);
+				accSet.add(acc);
+				System.out.println("새로운 계좌정보가 저장되었습니다. 기존 계좌정보는 삭제합니다.");
+				break;
+			default:
+				System.out.println("기존 계좌정보를 유지합니다.");
+				break;
+			}
 		}
 		
 		System.out.println("계좌개설이 완료되었습니다.");
@@ -80,14 +100,23 @@ public class AccountManager {
 				scan.nextLine();
 				continue;
 			}
-			
+
 			// 음수일 때, 500원 단위가 아닐 때 예외처리
-			if (money < 0) {
-				System.out.println("음수는 입력할 수 없습니다. 다시 입력해주세요.");
-			} else if (money%500 != 0) {
-				System.out.println("입금은 500원 단위로 가능합니다. 다시 입력해주세요.");
-			} else {
-				break;
+			try {
+				String message;
+				if (money < 0) {
+					message = "음수는 입력할 수 없습니다. 다시 입력해주세요.";
+				} else if (money%500 != 0) {
+					message = "입금은 500원 단위로 가능합니다. 다시 입력해주세요.";
+				} else {
+					break;
+				}
+				
+				MenuSelectException ex = new MenuSelectException(message);
+				throw ex;
+				
+			} catch (MenuSelectException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 		
@@ -120,14 +149,23 @@ public class AccountManager {
 				scan.nextLine();
 				continue;
 			}
-			
-			// 음수, 1000원 단위가 아닐 때 예외처리
-			if (money < 0) {
-				System.out.println("음수는 입력할 수 없습니다. 다시 입력해주세요.");
-			} else if (money%1000 != 0) {
-				System.out.println("출금은 1000원 단위로 가능합니다. 다시 입력해주세요.");
-			} else {
-				break;
+
+			// 음수일 때, 1000원 단위가 아닐 때 예외처리
+			try {
+				String message;
+				if (money < 0) {
+					message = "음수는 입력할 수 없습니다. 다시 입력해주세요.";
+				} else if (money%1000 != 0) {
+					message = "출금은 1000원 단위로 가능합니다. 다시 입력해주세요.";
+				} else {
+					break;
+				}
+				
+				MenuSelectException ex = new MenuSelectException(message);
+				throw ex;
+				
+			} catch (MenuSelectException e) {
+				System.out.println(e.getMessage());
 			}
 		}
 		
@@ -163,5 +201,21 @@ public class AccountManager {
 			acc.showAccountInfo();
 		}
 		System.out.println("전제계좌정보 출력이 완료되었습니다.");
+	}
+	
+	// 계좌정보 삭제
+	public void removeAccount() {
+		System.out.print("삭제할 계좌정보의 계좌번호를 입력해주세요: ");
+		String removeAcc = scan.nextLine();
+		
+		for (Account acc : accSet) {
+			if (removeAcc.equals(acc.getAccNum())) {
+				accSet.remove(acc);
+				System.out.println("계좌번호가 " + removeAcc + "인 계좌정보를 삭제했습니다.");
+				return;
+			}
+		}
+		
+		System.out.println("삭제할 계좌정보를 찾을 수 없습니다.");
 	}
 }

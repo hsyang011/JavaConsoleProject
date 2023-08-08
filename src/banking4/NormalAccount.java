@@ -10,7 +10,17 @@ public class NormalAccount extends Account {
 	
 	@Override
 	public boolean plusAccMoney(int money) {
-		super.balance = (int)(super.balance + (super.balance * inter) + money);
+		balance = (int)(balance + (balance * inter) + money);
 		return true;
+	}
+	
+	@Override
+	public void showAccountInfo() {
+		System.out.println("-------------");
+		System.out.println("계좌번호: " + accNum);
+		System.out.println("이름: " + name);
+		System.out.println("잔고: " + balance);
+		System.out.println("기본이자: " + (int)(inter*100) + "%");
+		System.out.println("-------------");
 	}
 }
