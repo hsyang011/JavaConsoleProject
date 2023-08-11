@@ -274,7 +274,6 @@ public class AccountManager {
 			out.writeObject(accSet);
 			// 스트림 소멸
 			out.close();
-			
 			System.out.println("모든 계좌정보를 obj파일로 저장하는데 성공하였습니다!");
 		} catch (FileNotFoundException e) {
 			System.out.println("파일이 존재하지 않음");

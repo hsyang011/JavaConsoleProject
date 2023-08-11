@@ -42,7 +42,10 @@ public class AccountManager {
 		// 선택한 계좌에 따라 정보 입력
 		switch (choice) {
 		case 1:
-			accArr[accCnt++] = new NormalAccount(accNum, name, balance, inter);
+			Account acc = new NormalAccount(accNum, name, balance, inter);
+			accArr[accCnt++] = acc;
+//			NormalAccount na = (NormalAccount)acc;
+//			accArr[accCnt++] = new NormalAccount(accNum, name, balance, inter);
 			break;
 		case 2:
 			System.out.print("신용등급(A,B,C등급): ");

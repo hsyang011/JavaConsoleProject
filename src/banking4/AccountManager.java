@@ -64,7 +64,7 @@ public class AccountManager {
 			System.out.println("Y or N");
 			String str = scan.nextLine();
 			
-			switch (str) {
+			switch (str.toUpperCase()) {
 			case "Y":
 				accSet.remove(acc);
 				accSet.add(acc);
