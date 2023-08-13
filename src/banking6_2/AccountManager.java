@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class AccountManager {
-	// 싱글톤 적용, private static으로 객체 생성
+	// private static으로 객체 생성
 	private static AccountManager accMgr = new AccountManager();
 	
 	private Scanner scan = new Scanner(System.in);
