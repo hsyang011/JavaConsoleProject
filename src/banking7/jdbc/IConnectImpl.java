@@ -15,10 +15,6 @@ public class IConnectImpl implements IConnect {
 	public Connection con; // DB연결
 	public PreparedStatement psmt; // 동적쿼리문 실행
 	public ResultSet rs; // select 실행결과 반환
-	
-	public IConnectImpl() {
-		System.out.println("IConnectImpl 기본생성자 호출");
-	}
 
 	// 인수생성자1 : 아이디, 패스워드를 매개변수로 받음
 	public IConnectImpl(String user, String pass) {
@@ -61,26 +57,5 @@ public class IConnectImpl implements IConnect {
 			System.out.println("자원 반납시 오류발생");
 			e.printStackTrace();
 		}
-	}
-	
-	// 사용자로부터 입력값을 받기 위한 메소드
-	@Override
-	public String scanValue(String title) {
-		Scanner scan = new Scanner(System.in);
-		System.out.print(title + "을(를) 입력(exit->종료):");
-		String inputStr = scan.nextLine();
-		
-		/* equalsIgnoreCase() : equals()와 동일하게 문자열이 동일한지 비교하는
-		메소드로 대소문자를 구분하지 않고 비교한다. 즉, EXIT와 exit를 같은 문자열로
-		판단한다. */
-		if ("EXIT".equalsIgnoreCase(inputStr)) {
-			System.out.println("프로그램을 종료합니다.");
-			// 자원반납
-			close();
-			// 프로그램 자체가 즉시 종료된다.
-		}
-		
-		// 종료가 아니라면 사용자가 입력한 값을 반환한다.
-		return inputStr;
 	}
 }

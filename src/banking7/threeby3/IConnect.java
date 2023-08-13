@@ -11,6 +11,4 @@ public interface IConnect {
 	void connect(String user, String pass); // DB연결
 	void execute(); // 쿼리문 실행
 	void close(); // 자원 반납
-	// 사용자로부터 입력을 받기 위한 메소드
-	String scanValue(String title);
 }

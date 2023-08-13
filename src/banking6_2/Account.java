@@ -1,9 +1,12 @@
-package banking7.threeby3;
+package banking6_2;
 
-public class Account {
-	private String accNum; // 계좌번호
-	private String name; // 이름
-	private int balance; // 잔액
+import java.io.Serializable;
+import java.util.Scanner;
+
+public abstract class Account implements Serializable {
+	protected String accNum; // 계좌번호
+	protected String name; // 이름
+	protected int balance; // 잔액
 
 	// 계좌번호를 개설할 목적으로 만들어질 객체의 생성자
 	public Account(String accNum, String name, int balance) {
@@ -12,13 +15,7 @@ public class Account {
 		this.balance = balance;
 	}
 	
-	public void showAccountInfo() {
-		System.out.println("-------------");
-		System.out.println("계좌번호: " + accNum);
-		System.out.println("이름: " + name);
-		System.out.println("잔고: " + balance);
-		System.out.println("-------------");
-	}
+	public abstract void showAccountInfo();
 	
 	public String getAccNum() {
 		return accNum;
@@ -45,11 +42,7 @@ public class Account {
 	}
 
 	// 입금처리
-	public boolean plusAccMoney(int money) {
-		// ver01에서는 별도의 검사를 하지 않고 입금처리함
-		balance += money;
-		return true;
-	}
+	public abstract boolean plusAccMoney(int money);
 	
 	// 출금처리
 	public boolean minusAccMoney(int money) {
@@ -57,4 +50,24 @@ public class Account {
 		balance -= money;
 		return true;
 	}
+	
+	// accNum의 해쉬코드를 재정의
+	@Override
+	public int hashCode() {
+		return accNum.hashCode();
+	}
+	
+	// accNum의 해쉬코드를 이용하여 비교
+	@Override
+	public boolean equals(Object obj) {
+		Account acc = (Account)obj;
+				
+		if (this.accNum.equals(acc.getAccNum())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public abstract String toString();
 }

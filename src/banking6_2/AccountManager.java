@@ -1,4 +1,4 @@
-package banking6;
+package banking6_2;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,9 +12,20 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class AccountManager {
+	// 싱글톤 적용, private static으로 객체 생성
+	private static AccountManager accMgr = new AccountManager();
+	
 	private Scanner scan = new Scanner(System.in);
 	private Set<Account> accSet = new HashSet<Account>();
 	private AutoSaver saver;
+	
+	// 기본생성자에 private을 걸어놔서 생성을 막음
+	private AccountManager() {}
+	
+	// 겟터를 통해서만 accMgr에 접근할 수 있다.
+	public static AccountManager getManager() {
+		return accMgr;
+	}
 
 	public Set<Account> getAccSet() {
 		return accSet;
@@ -236,7 +247,7 @@ public class AccountManager {
 	public void objectInput() {
 		try {
 			ObjectInputStream in = new ObjectInputStream(
-					new FileInputStream("src/banking6/AccountInfo.obj")
+					new FileInputStream("src/banking6_2/AccountInfo.obj")
 			);
 			
 			if (in == null) {
@@ -265,7 +276,7 @@ public class AccountManager {
 		try {
 			// 인스턴스를 파일로 저장하기 위해 출력스트림을 생성한다.
 			ObjectOutputStream out = new ObjectOutputStream(
-					new FileOutputStream("src/banking6/AccountInfo.obj")
+					new FileOutputStream("src/banking6_2/AccountInfo.obj")
 			);
 			// accSet에 담겨있는 모든 객체를 파일에 저장한다.
 //			for (Account acc : accSet) {
@@ -292,7 +303,7 @@ public class AccountManager {
 		switch (option) {
 		case 1:
 			try {
-				saver = new AutoSaver(this);
+				saver = new AutoSaver();
 				saver.setName("자동저장 데몬쓰레드");
 				saver.setDaemon(true);
 				saver.start();

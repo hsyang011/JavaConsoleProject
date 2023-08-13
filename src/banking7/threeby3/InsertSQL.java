@@ -1,7 +1,6 @@
 package banking7.threeby3;
 
 import java.sql.SQLException;
-import java.util.Scanner;
 
 // DB연결을 위한 클래스를 상속한다.
 public class InsertSQL extends IConnectImpl {

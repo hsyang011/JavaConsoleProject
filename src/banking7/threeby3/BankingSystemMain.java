@@ -41,9 +41,6 @@ public class BankingSystemMain implements ICustomDefine {
 		System.out.println("계좌번호와 입금할 금액을 입력하세요.");
 		System.out.print("계좌번호: ");
 		String searchAccNum = scan.nextLine();
-		System.out.print("입금액: ");
-		int money = scan.nextInt();
-		scan.nextLine();
 
 		SelectSQL sel = new SelectSQL(searchAccNum);
 		sel.execute();
@@ -51,6 +48,9 @@ public class BankingSystemMain implements ICustomDefine {
 		String accNum = sel.getAccNum();
 		int balance = sel.getBalance();
 		System.out.println("현재 잔고는 " + balance + "원 입니다.");
+		System.out.print("입금액: ");
+		int money = scan.nextInt();
+		scan.nextLine();
 		UpdateSQL upd = new UpdateSQL(accNum, balance, money);
 		upd.execute();
 		
@@ -85,7 +85,28 @@ public class BankingSystemMain implements ICustomDefine {
 	}
 	
 	public static void startGame() {
-		
+		while (true) {
+			// 게임 객체 생성 및 실행
+			Game game = new Game();
+			boolean flag = game.run();
+			
+			// 게임을 성공적으로 끝냈을 때
+			if (flag) {
+				System.out.print("재시작하시겠습니까? (Y 누르면 재시작, 나머지는 종료)");
+				String code = scan.nextLine();
+				
+				if (code.equalsIgnoreCase("Y")) {
+					System.out.println("게임을 재시작합니다.");
+				} else {
+					System.out.println("게임을 종료합니다.");
+					return;
+				}
+			// 게임 도중 X를 눌렀을 때
+			} else {
+				System.out.println("게임을 종료합니다.");
+				return;
+			}
+		}
 	}
 
 	public static void main(String[] args) {
@@ -115,14 +136,13 @@ public class BankingSystemMain implements ICustomDefine {
 				showAccInfo();
 				break;
 			case GAME:
-				System.out.println("***3 by 3 퍼즐게임을 시작합니다***");
+				System.out.println("***게임시작***");
 				startGame();
 				break;
 			case EXIT:
 				System.out.println("프로그램을 종료합니다. 이용해주셔서 감사합니다.");
+				scan.close();
 				return;
-			default:
-				System.out.println("1~6사이의 숫자로만 입력해주세요.");
 			}
 		}
 	}
