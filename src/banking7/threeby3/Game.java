@@ -10,6 +10,7 @@ public class Game {
 	// add(), remove()를 자주 호출할 예정이므로 LinkedList를 사용하는 것이 성능에 유리하다.
 	private List<String> list = new LinkedList<String>();
 	
+	// 보드를 출력하면서 정답과 일치하는지도 검사
 	public boolean showBoard() {
 		String answer = "=======\n1 2 3\n4 5 6\n7 8 X\n=======\n";
 		
@@ -29,6 +30,7 @@ public class Game {
 		return false;
 	}
 	
+	// 게임 초기 셋팅
 	public void initGame() {
 		// 리스트의 값 초기화
 		for (int i=1; i<=8; i++) {
@@ -90,6 +92,7 @@ public class Game {
 		}
 	}
 
+	// 게임 실행은 여기서 한다.
 	public boolean run() {
 		System.out.println("3 by 3 게임을 시작합니다.");
 		
@@ -164,6 +167,7 @@ public class Game {
 				}
 				break;
 			case "X":
+				// 게임이 비정상적으로 종료됐음을 알린다.
 				return false;
 			default:
 				System.out.println("W, A, S, D 중 하나로만 입력해주세요.");
@@ -171,6 +175,7 @@ public class Game {
 			}
 			
 			if (showBoard()) {
+				// 게임을 무사히 마쳐 정상적으로 종료됐음을 알린다.
 				return true;
 			}
 		}

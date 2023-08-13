@@ -23,6 +23,7 @@ public class BankingSystemMain implements ICustomDefine {
 	
 	// 계좌개설
 	public static void makeAccount() {
+		// 사용자로부터 입력받는다.
 		System.out.print("계좌번호: " );
 		String accNum = scan.nextLine();
 		System.out.print("고객이름: ");
@@ -31,6 +32,7 @@ public class BankingSystemMain implements ICustomDefine {
 		int balance = scan.nextInt();
 		scan.nextLine();
 		
+		// 사용자로부터 입력받은 변수들을 생성자의 인자로 보낸다.
 		new InsertSQL(accNum, name, balance).execute();
 		
 		System.out.println("계좌개설이 완료되었습니다.");
@@ -38,20 +40,26 @@ public class BankingSystemMain implements ICustomDefine {
 	
 	// 입금
 	public static void depositMoney() {
+		// 사용자로부터 계좌번호를 입력받는다.
 		System.out.println("계좌번호와 입금할 금액을 입력하세요.");
 		System.out.print("계좌번호: ");
 		String searchAccNum = scan.nextLine();
 
+		// 사용자로부터 계좌번호를 입력받은 후 생성자의 인자로 넘겨준다.
 		SelectSQL sel = new SelectSQL(searchAccNum);
 		sel.execute();
 	
+		// 계좌번호와 일치하는 레코드를 찾은 후 계좌번호와 잔고를 가져온다.
 		String accNum = sel.getAccNum();
 		int balance = sel.getBalance();
 		System.out.println("현재 잔고는 " + balance + "원 입니다.");
+		// 사용자로부터 입금액을 입력받는다.
 		System.out.print("입금액: ");
 		int money = scan.nextInt();
 		scan.nextLine();
+		// 생성자의 인자로 계좌번호, 잔고, 입금액을 넘겨준다.
 		UpdateSQL upd = new UpdateSQL(accNum, balance, money);
+		// 잔고를 수정한다.
 		upd.execute();
 		
 		System.out.println(money + "원 입금이 완료되었습니다.");
@@ -80,6 +88,7 @@ public class BankingSystemMain implements ICustomDefine {
 	}
 	
 	public static void showAccInfo() {
+		// 모든 계좌정보를 출력한다.
 		new SelectQuery().execute();
 		System.out.println("전제계좌정보 출력이 완료되었습니다.");
 	}
@@ -95,6 +104,7 @@ public class BankingSystemMain implements ICustomDefine {
 				System.out.print("재시작하시겠습니까? (Y 누르면 재시작, 나머지는 종료)");
 				String code = scan.nextLine();
 				
+				// y 혹은 Y를 입력했을 때 게임 재시작
 				if (code.equalsIgnoreCase("Y")) {
 					System.out.println("게임을 재시작합니다.");
 				} else {
