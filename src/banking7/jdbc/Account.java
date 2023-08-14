@@ -24,24 +24,12 @@ public class Account {
 		return accNum;
 	}
 
-	public void setAccNum(String accNum) {
-		this.accNum = accNum;
-	}
-
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public int getBalance() {
 		return balance;
-	}
-
-	public void setBalance(int balance) {
-		this.balance = balance;
 	}
 
 	// 입금처리
