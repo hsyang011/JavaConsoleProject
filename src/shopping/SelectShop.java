@@ -15,8 +15,10 @@ public class SelectShop extends ConnectDB {
 			System.out.println("검색할 상품명을 입력하세요: ");
 			String search = scan.nextLine();
 			
-			String query = "SELECT * FROM sh_goods "
-					+ "WHERE goods_name LIKE '%" + search + "%'";
+			String query = "SELECT g_idx, goods_name, to_char(goods_price, '999,000'), "
+					+ " to_char(regidate, 'yyyy-mm-dd hh:mi'), p_code "
+					+ " FROM sh_goods "
+					+ " WHERE goods_name LIKE '%" + search + "%'";
 			
 			rs = stmt.executeQuery(query);
 
@@ -33,6 +35,7 @@ public class SelectShop extends ConnectDB {
 			System.out.println("쿼리오류발생");
 			e.printStackTrace();
 		} finally {
+			scan.close();
 			close(); // DB자원반납
 		}
 	}

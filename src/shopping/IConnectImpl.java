@@ -74,6 +74,7 @@ public class IConnectImpl implements IConnect {
 		if ("EXIT".equalsIgnoreCase(inputStr)) {
 			System.out.println("프로그램을 종료합니다.");
 			// 자원반납
+			scan.close();
 			close();
 			// 프로그램 자체가 즉시 종료된다.
 		}

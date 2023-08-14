@@ -35,8 +35,10 @@ public class AutoSaver extends Thread {
 				break;
 			} catch (FileNotFoundException e) {
 				System.out.println("파일이 존재하지 않습니다.");
+				break;
 			} catch (IOException e) {
 				System.out.println("IO오류");
+				break;
 			}
 		}
 	}
