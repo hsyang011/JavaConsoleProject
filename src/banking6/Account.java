@@ -1,8 +1,8 @@
 package banking6;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
+@SuppressWarnings("serial")
 public abstract class Account implements Serializable {
 	protected String accNum; // 계좌번호
 	protected String name; // 이름

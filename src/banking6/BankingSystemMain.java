@@ -7,7 +7,7 @@ public class BankingSystemMain implements ICustomDefine {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		AccountManager accMgr = new AccountManager();
+		AccountManager accMgr = AccountManager.getManager();
 		
 		// 저장되어있는 객체 파일을 불러오기
 		accMgr.objectInput();
@@ -55,6 +55,7 @@ public class BankingSystemMain implements ICustomDefine {
 			case EXIT:
 				// 종료되기 직전 객체를 obj파일로 저장하기
 				accMgr.objectOutput();
+				scan.close();
 				System.out.println("프로그램을 종료합니다. 이용해주셔서 감사합니다.");
 				return;
 			// 범위를 벗어났을 때 예외처리

@@ -7,11 +7,8 @@ import java.io.PrintWriter;
 import java.util.Set;
 
 public class AutoSaver extends Thread {
-	private Set<Account> accSet;
-	
-	public AutoSaver(AccountManager accMgr) {
-		accSet = accMgr.getAccSet();
-	}
+	// 겟터를 이용하여 accMgr의 컬렉션을 가져온다.
+	private Set<Account> accSet = AccountManager.getManager().getAccSet();
 	
 	@Override
 	public void run() {

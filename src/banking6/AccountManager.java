@@ -12,9 +12,20 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class AccountManager {
+	// private static으로 객체 생성
+	private static AccountManager accMgr = new AccountManager();
+	
 	private Scanner scan = new Scanner(System.in);
 	private Set<Account> accSet = new HashSet<Account>();
 	private AutoSaver saver;
+	
+	// 기본생성자에 private을 걸어놔서 생성을 막음
+	private AccountManager() {}
+	
+	// 겟터를 통해서만 accMgr에 접근할 수 있다.
+	public static AccountManager getManager() {
+		return accMgr;
+	}
 
 	public Set<Account> getAccSet() {
 		return accSet;
@@ -233,6 +244,7 @@ public class AccountManager {
 	}
 	
 	// 객체 파일 불러오기
+	@SuppressWarnings({ "unchecked", "unused" })
 	public void objectInput() {
 		try {
 			ObjectInputStream in = new ObjectInputStream(
@@ -292,19 +304,26 @@ public class AccountManager {
 		switch (option) {
 		case 1:
 			try {
-				saver = new AutoSaver(this);
-				saver.setName("자동저장 데몬쓰레드");
-				saver.setDaemon(true);
-				saver.start();
-				System.out.println("자동저장 ON상태로 설정되었습니다.");
+				// saver가 null값이라면 쓰레드 객체 생성 및 구동 시작
+				if (saver == null) {
+					saver = new AutoSaver();
+					saver.setName("자동저장 데몬쓰레드");
+					saver.setDaemon(true);
+					saver.start();
+					System.out.println("자동저장 ON상태로 설정되었습니다.");
+				} else {
+					System.out.println("이미 자동저장이 실행중입니다.");
+				}
 			} catch (IllegalThreadStateException e) {
 				System.out.println("이미 자동저장이 실행중입니다.");
 			}
 			
 			break;
 		case 2:
+			// 인터럽트를 걸고 null값을 할당하여 객체를 삭제한다.
 			System.out.println("자동저장 OFF상태로 설정되었습니다.");
 			saver.interrupt();
+			saver = null;
 			break;
 		}
 	}

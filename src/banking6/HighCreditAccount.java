@@ -1,5 +1,6 @@
 package banking6;
 
+@SuppressWarnings("serial")
 public class HighCreditAccount extends Account {
 	private double inter;
 	private double addInter;

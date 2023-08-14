@@ -1,5 +1,6 @@
 package banking6;
 
+@SuppressWarnings("serial")
 public class NormalAccount extends Account {
 	private double inter;
 
