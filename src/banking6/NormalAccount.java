@@ -27,7 +27,8 @@ public class NormalAccount extends Account {
 	
 	@Override
 	public String toString() {
-		String str = String.format("[일반계좌] 계좌번호:%s, 이름:%s, 잔고:%d, 이자율:%d%s", accNum, name, balance, (int)(inter*100), "%");
+		String str = String.format("[일반계좌] 계좌번호:%s, 이름:%s, 잔고:%d, 이자율:%d%s",
+				accNum, name, balance, (int)(inter*100), "%");
 		return str;
 	}
 }
