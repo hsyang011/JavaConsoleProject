@@ -22,6 +22,7 @@ public class AutoSaver extends Thread {
 						new FileWriter("src/banking6/AutoSaveAccount.txt")
 				);
 				
+				// 컬렉션을 반복하여 toString()을 호출하여 문자열로 저장한다.
 				for (Account acc : accSet) {
 					out.printf("%s\n", acc.toString());
 				}
