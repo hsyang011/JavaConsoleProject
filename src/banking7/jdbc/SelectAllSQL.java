@@ -2,11 +2,11 @@ package banking7.jdbc;
 
 import java.sql.SQLException;
 
-public class SelectQuery extends ConnectDB {
+public class SelectAllSQL extends ConnectDB {
 	
 	/* 매개변수가 없는 부모의 기본생성자를 호출해서 DB연결.
 	여기서는 아래 생성자를 주석처리해도 문제없이 실행된다. */
-	public SelectQuery() {
+	public SelectAllSQL() {
 		super();
 	}
 	

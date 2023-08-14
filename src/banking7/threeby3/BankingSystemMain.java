@@ -89,7 +89,7 @@ public class BankingSystemMain implements ICustomDefine {
 	
 	public static void showAccInfo() {
 		// 모든 계좌정보를 출력한다.
-		new SelectQuery().execute();
+		new SelectAllSQL().execute();
 		System.out.println("전제계좌정보 출력이 완료되었습니다.");
 	}
 	

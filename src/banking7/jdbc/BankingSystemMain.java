@@ -77,7 +77,7 @@ public class BankingSystemMain implements ICustomDefine {
 	}
 	
 	public static void showAccInfo() {
-		new SelectQuery().execute();
+		new SelectAllSQL().execute();
 		System.out.println("전제계좌정보 출력이 완료되었습니다.");
 	}
 
