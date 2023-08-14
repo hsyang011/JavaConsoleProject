@@ -1,7 +1,5 @@
 package banking7.jdbc;
 
-import java.util.Scanner;
-
 public class Account {
 	private String accNum; // 계좌번호
 	private String name; // 이름

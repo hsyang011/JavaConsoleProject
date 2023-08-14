@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 /* 인터페이스를 구현한 클래스로 extends 대신 implements를 사용한다.
 또한 용어도 '상속'이 아닌 '구현'이라 표현한다. */

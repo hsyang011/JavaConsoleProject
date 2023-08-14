@@ -2,8 +2,6 @@ package banking7.jdbc;
 
 import java.util.Scanner;
 
-import banking1.Account;
-
 public class BankingSystemMain implements ICustomDefine {
 	static Scanner scan = new Scanner(System.in);
 	static Account[] accArr = new Account[50]; // Account객체 배열 생성
@@ -111,6 +109,7 @@ public class BankingSystemMain implements ICustomDefine {
 				break;
 			case EXIT:
 				System.out.println("프로그램을 종료합니다. 이용해주셔서 감사합니다.");
+				scan.close();
 				return;
 			}
 		}
