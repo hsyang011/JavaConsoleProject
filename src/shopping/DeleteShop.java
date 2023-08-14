@@ -18,6 +18,7 @@ public class DeleteShop extends IConnectImpl {
 			csmt.registerOutParameter(2, Types.INTEGER);
 			csmt.execute();
 			
+			// flag의 값
 			switch (csmt.getInt(2)) {
 			case 0:
 				System.out.println("삭제에 실패하였습니다.");

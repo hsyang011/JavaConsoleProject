@@ -34,14 +34,12 @@ public class Account {
 
 	// 입금처리
 	public boolean plusAccMoney(int money) {
-		// ver01에서는 별도의 검사를 하지 않고 입금처리함
 		balance += money;
 		return true;
 	}
 	
 	// 출금처리
 	public boolean minusAccMoney(int money) {
-		// ver01에서는 잔고가 마이너스 처리되더라도 입금처리함 조건 검사 없이 출금처리함
 		balance -= money;
 		return true;
 	}

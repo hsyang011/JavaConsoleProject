@@ -21,6 +21,7 @@ public class UpdateShop extends IConnectImpl {
 			csmt.registerOutParameter(5, Types.INTEGER);
 			csmt.execute();
 			
+			// flag의 값
 			switch (csmt.getInt(5)) {
 			case 0:
 				System.out.println("수정에 실패하였습니다.");

@@ -97,6 +97,7 @@ public class BankingSystemMain implements ICustomDefine {
 		while (true) {
 			// 게임 객체 생성 및 실행
 			Game game = new Game();
+			// 여기서 게임실행후 게임을 모두 마쳤을때 아래문장들이 실행된다.
 			boolean flag = game.run();
 			
 			// 게임을 성공적으로 끝냈을 때

@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class BankingSystemMain implements ICustomDefine {
 	static Scanner scan = new Scanner(System.in);
-	static Account[] accArr = new Account[50]; // Account객체 배열 생성
-	static int accCnt = 0; // 객체배열의 길이를 저장할 변수
 
 	// 메뉴출력
 	public static void showMenu() {
@@ -28,6 +26,7 @@ public class BankingSystemMain implements ICustomDefine {
 		int balance = scan.nextInt();
 		scan.nextLine();
 		
+		// 계좌개설에 필요한 정보들을 입력받아 인자로 보낸다.
 		new InsertSQL(accNum, name, balance).execute();
 		
 		System.out.println("계좌개설이 완료되었습니다.");
@@ -39,15 +38,18 @@ public class BankingSystemMain implements ICustomDefine {
 		System.out.print("계좌번호: ");
 		String searchAccNum = scan.nextLine();
 
+		// 셀렉트를 먼저 실행하여 입력한 계좌번호의 잔고를 가져온다.
 		SelectSQL sel = new SelectSQL(searchAccNum);
 		sel.execute();
-	
+
+		// 계좌번호와 잔고를 가져온다.
 		String accNum = sel.getAccNum();
 		int balance = sel.getBalance();
 		System.out.println("현재 잔고는 " + balance + "원 입니다.");
 		System.out.print("입금액: ");
 		int money = scan.nextInt();
 		scan.nextLine();
+		// 업데이트를 실행하여 잔고를 수정한다.
 		UpdateSQL upd = new UpdateSQL(accNum, balance, money);
 		upd.execute();
 		
@@ -55,6 +57,7 @@ public class BankingSystemMain implements ICustomDefine {
 		System.out.println("입금 후 잔고는 " + (balance + money) + "원 입니다.");
 	}
 	
+	// 출금
 	public static void withdrawMoney() {
 		System.out.println("계좌번호와 출금할 금액을 입력하세요.");
 		System.out.print("계좌번호: ");
@@ -63,12 +66,15 @@ public class BankingSystemMain implements ICustomDefine {
 		int money = scan.nextInt();
 		scan.nextLine();
 		
+		// 셀렉트를 먼저 실행하여 입력한 계좌번호의 잔고를 가져온다.
 		SelectSQL sel = new SelectSQL(searchAccNum);
 		sel.execute();
 	
+		// 계좌번호와 잔고를 가져온다.
 		String accNum = sel.getAccNum();
 		int balance = sel.getBalance();
 		System.out.println("현재 잔고는 " + balance + "원 입니다.");
+		// 업데이트를 실행하여 잔고를 수정한다.
 		UpdateSQL upd = new UpdateSQL(accNum, balance, -money);
 		upd.execute();
 		

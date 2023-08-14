@@ -37,20 +37,21 @@ public class Game {
 			list.add(Integer.toString(i));
 		}
 		list.add("X");
+		// 1,2,3,4,5,6,7,8,X가 담긴다.
 		
 		// 셔플
 		String[] codeArr = { "W", "A", "S", "D" };
 		// 총 3번 셔플을 돌린다.
 		for (int i=0; i<3; i++) {
 			// 0~3까지의 랜덤값을 부여하고, 그 값을 배열의 인덱스로 접근하여 코드를 꺼내온다.
-			String code = codeArr[(int)(Math.random()*4)];
+			String code = codeArr[(int)(Math.random()*4)]; // 0~3번인덱스
 			String temp1, temp2;
 			int ranIdx;
 			
 			switch (code) {
 			case "W":
 				// 위쪽 이동은 3~8로만 나오게 한다.
-				ranIdx = (int)(Math.random()*6)+3;
+				ranIdx = (int)(Math.random()*6)+3; // 3~8
 				temp1 = list.get(ranIdx-3);
 				temp2 = list.get(ranIdx);
 				list.remove(ranIdx-3);
@@ -174,6 +175,7 @@ public class Game {
 				break;
 			}
 			
+			// 한 번 입력받을때마다 항상 정답인지 아닌지 검사한다.
 			if (showBoard()) {
 				// 게임을 무사히 마쳐 정상적으로 종료됐음을 알린다.
 				return true;
