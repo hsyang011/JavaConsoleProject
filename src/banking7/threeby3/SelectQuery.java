@@ -36,11 +36,12 @@ public class SelectQuery extends ConnectDB {
 			받아야 하므로 ResultSet객체가 반환타입으로 정의되어 있다. */
 			rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				String accNum = rs.getString(1); // id컬럼
-				String name = rs.getString(2);
-				int balance = rs.getInt(3);
+				int idx = rs.getInt(1);
+				String accNum = rs.getString(2); // id컬럼
+				String name = rs.getString(3);
+				int balance = rs.getInt(4);
 				
-				System.out.printf("%s %s %d\n", accNum, name, balance);
+				System.out.printf("%d) 계좌번호:%s 이름:%s 잔고:%d\n", idx, accNum, name, balance);
 			} 
 		} catch (SQLException e) {
 			System.out.println("쿼리오류발생");

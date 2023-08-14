@@ -21,7 +21,7 @@ public class InsertSQL extends IConnectImpl {
 	public void execute() {
 		try {
 			// 1. 쿼리문 준비 : 값의 셋팅을 위한 부분을 ?(인파라미터)로 기술한다.
-			String query = "INSERT INTO banking_tb VALUES (?, ?, ?)";
+			String query = "INSERT INTO banking_tb VALUES (seq_banking.nextval, ?, ?, ?)";
 			
 			// 2. prepared객체 생성 : 준비한 쿼리문을 인수로 전달한다.
 			psmt = con.prepareStatement(query);
