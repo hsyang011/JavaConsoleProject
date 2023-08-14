@@ -41,7 +41,7 @@ public class Game {
 		// 셔플
 		String[] codeArr = { "W", "A", "S", "D" };
 		// 총 3번 셔플을 돌린다.
-		for (int i=0; i<1; i++) {
+		for (int i=0; i<3; i++) {
 			// 0~3까지의 랜덤값을 부여하고, 그 값을 배열의 인덱스로 접근하여 코드를 꺼내온다.
 			String code = codeArr[(int)(Math.random()*4)];
 			String temp1, temp2;
