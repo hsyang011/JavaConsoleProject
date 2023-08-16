@@ -251,11 +251,6 @@ public class AccountManager {
 					new FileInputStream("src/banking6/AccountInfo.obj")
 			);
 			
-			if (in == null) {
-				System.out.println("새 파일입니다.");
-				return;
-			}
-			
 			accSet = (Set<Account>)in.readObject();
 			
 			in.close();

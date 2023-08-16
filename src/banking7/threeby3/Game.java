@@ -51,7 +51,7 @@ public class Game {
 			switch (code) {
 			case "W":
 				// 위쪽 이동은 3~8로만 나오게 한다.
-				ranIdx = (int)(Math.random()*6)+3; // 3~8
+				ranIdx = (int)(Math.random()*6)+3; // (0~5) + 3
 				temp1 = list.get(ranIdx-3);
 				temp2 = list.get(ranIdx);
 				list.remove(ranIdx-3);
@@ -108,8 +108,10 @@ public class Game {
 			System.out.println("[사용법] W:위쪽, A:왼쪽, S:아래쪽, D:오른쪽, X:종료");
 			System.out.print("키를 입력해주세요:");
 			String code = scan.nextLine();
+			// 현재 X의 위치를 저장
 			int idx = list.indexOf("X");
 			
+			// 대소문자 구분안함
 			switch (code.toUpperCase()) {
 			case "W":
 				if (0<=idx && idx<=2) {
@@ -175,7 +177,7 @@ public class Game {
 				break;
 			}
 			
-			// 한 번 입력받을때마다 항상 정답인지 아닌지 검사한다.
+			// 사용자로부터 한 번 입력받을때마다 항상 정답인지 아닌지 검사한다.
 			if (showBoard()) {
 				// 게임을 무사히 마쳐 정상적으로 종료됐음을 알린다.
 				return true;
