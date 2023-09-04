@@ -43,6 +43,7 @@ public class AccountManager {
 		switch (choice) {
 		case 1:
 			Account acc = new NormalAccount(accNum, name, balance, inter);
+//			acc.plusAccMoney(10);
 			accArr[accCnt++] = acc;
 //			NormalAccount na = (NormalAccount)acc;
 //			accArr[accCnt++] = new NormalAccount(accNum, name, balance, inter);

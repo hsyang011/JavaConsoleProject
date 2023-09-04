@@ -8,6 +8,9 @@ import java.util.Set;
 public class AccountManager {
 	private Scanner scan = new Scanner(System.in);
 	private Set<Account> accSet = new HashSet<Account>();
+	
+	int[] arr = new int[5];
+	int[] arr2 = { 4,5,6 };
 
 	// 메뉴출력
 	public void showMenu() {

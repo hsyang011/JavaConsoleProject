@@ -262,6 +262,7 @@ public class AccountManager {
 			);
 			// accSet에 담겨있는 모든 객체를 파일에 저장한다.
 			out.writeObject(accSet);
+			
 			// 스트림 소멸
 			out.close();
 			

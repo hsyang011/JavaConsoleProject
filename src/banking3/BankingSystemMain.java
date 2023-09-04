@@ -13,8 +13,6 @@ public class BankingSystemMain implements ICustomDefine {
 			accMgr.showMenu();
 			
 			int choice;
-			
-			// 문자열을 입력했을 때 예외처리
 			try {
 				choice = scan.nextInt();
 				scan.nextLine(); // 버퍼날림
